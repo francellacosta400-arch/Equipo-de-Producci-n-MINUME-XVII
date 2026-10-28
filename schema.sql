@@ -1,0 +1,10 @@
+-- Respaldo. El servidor crea estas tablas solo si faltan.
+CREATE TABLE IF NOT EXISTS actividades (id TEXT PRIMARY KEY, titulo TEXT NOT NULL, regionales TEXT NOT NULL, datos TEXT NOT NULL, creado INTEGER NOT NULL, actualizado INTEGER NOT NULL, autor TEXT NOT NULL DEFAULT '', version INTEGER NOT NULL DEFAULT 1);
+CREATE TABLE IF NOT EXISTS comentarios (id TEXT PRIMARY KEY, actividad_id TEXT NOT NULL, autor TEXT NOT NULL, texto TEXT NOT NULL, creado INTEGER NOT NULL);
+CREATE INDEX IF NOT EXISTS idx_com_act ON comentarios (actividad_id, creado);
+CREATE TABLE IF NOT EXISTS bitacora (id INTEGER PRIMARY KEY AUTOINCREMENT, actividad_id TEXT, titulo TEXT, regionales TEXT, accion TEXT NOT NULL, autor TEXT NOT NULL DEFAULT '', en INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS tablas (id TEXT PRIMARY KEY, tipo TEXT NOT NULL, titulo TEXT NOT NULL, fecha TEXT NOT NULL DEFAULT '', orden INTEGER NOT NULL, creado INTEGER NOT NULL, actualizado INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS tabla_filas (id TEXT PRIMARY KEY, tabla_id TEXT NOT NULL, orden INTEGER NOT NULL, a TEXT NOT NULL DEFAULT '', b TEXT NOT NULL DEFAULT '');
+CREATE INDEX IF NOT EXISTS idx_filas_tabla ON tabla_filas (tabla_id, orden);
+CREATE TABLE IF NOT EXISTS ajustes (clave TEXT PRIMARY KEY, valor TEXT NOT NULL, actualizado INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS hojas_privadas (id TEXT PRIMARY KEY, titulo TEXT NOT NULL, url TEXT NOT NULL, creado INTEGER NOT NULL);

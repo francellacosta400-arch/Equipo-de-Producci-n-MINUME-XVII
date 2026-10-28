@@ -1,0 +1,28 @@
+EQUIPO DE PRODUCCIÓN MINUME XVII - SITIO NUEVO
+
+PASO 1. Subir a GitHub (sin borrar nada)
+  - Descomprime el zip. En tu repositorio: Add file > Upload files.
+  - Arrastra index.html, worker.js y schema.sql SUELTOS (sin carpetas). Reemplazan a los anteriores.
+  - Commit changes. Cloudflare publica solo en 1 o 2 minutos. Recarga con Ctrl+F5.
+  - Code.gs NO se sube a GitHub: es para Google (paso 3).
+
+PASO 2. Claves en Cloudflare (Settings > Variables and Secrets, tipo "Secret", en Runtime, NO en Build)
+  - ADMIN_KEY   (ya la tienes) = tu clave de administrador. Úsala para Privado, Diseño, borrar y editar agenda/roles.
+  - TEAM_KEY    (opcional) = clave para que solo tu equipo pueda agregar/editar actividades. Si no la pones, cualquiera con el enlace puede editar.
+  - SHEETS_URL y SHEETS_SECRET: solo para la hoja general de Google (paso 3).
+  La base de datos D1 sigue conectada como DB; las tablas nuevas se crean solas.
+
+PASO 3. Hoja general de Google (opcional, la ve solo el administrador)
+  1. Crea una hoja de Google nueva (sheets.new).
+  2. Extensiones > Apps Script. Borra lo que haya y pega todo el contenido de Code.gs.
+  3. En la línea const CLAVE = '...' escribe una clave tuya larga (la misma será SHEETS_SECRET).
+  4. Implementar > Nueva implementación > tipo "Aplicación web" > Ejecutar como: Yo > Quién tiene acceso: Cualquier persona > Implementar. Autoriza los permisos.
+  5. Copia la URL que termina en /exec y ponla en Cloudflare como SHEETS_URL. Pon la clave del paso 3 como SHEETS_SECRET.
+  6. En la web: Administrar > Privado > "Sincronizar todo ahora". Se crea una pestaña por actividad.
+  Después cada vez que alguien guarde en el mapa, la hoja se actualiza sola.
+
+CÓMO SE USA
+  - Mapa: toca una o varias regionales > "Agregar actividad". Una actividad en varias regionales es una sola y se ve igual en todas.
+  - Agenda y Roles: entra como administrador > "Agregar tabla". Cada una es un desplegable con "Descargar PDF" (en la ventana de impresión elige "Guardar como PDF").
+  - Privado: métricas, rankings, avance por actividad y tus enlaces a hojas.
+  - Diseño: mover logos (arrastrar), colores, textos y decoración del kit. Pulsa "Guardar diseño".
