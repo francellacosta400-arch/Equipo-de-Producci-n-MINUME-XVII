@@ -1,0 +1,17 @@
+{
+  "name": "equipo-de-produccion-minume-xvii",
+  "main": "worker.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "magic-night-hojas",
+      "database_id": "23e8ecca-d82b-4d47-ae32-c45f32ac9a59"
+    }
+  ]
+}
